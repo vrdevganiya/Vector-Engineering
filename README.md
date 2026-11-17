@@ -1,39 +1,57 @@
-# Vector Engineering & CNC Fabrication Web App
+# Vector Engineering - Industrial CNC Router & Fabrication Website
 
-A high-converting, responsive industrial website built with **React**, **Vite.js**, and **Tailwind CSS**.
+A complete, high-converting industrial website for **Vector Engineering**, featuring both a standalone single-page implementation (Tailwind CSS CDN + vanilla JS) and a modular **React + Vite** web app connected to a live **Supabase** backend for lead capture and quote inquiries.
+
+---
+
+## 🌟 Key Features
+
+- **Exact Industrial Architecture:** High-contrast slate/charcoal palette (`#0f172a`, `#1e293b`), safety-amber accents (`#f97316`), sticky navigation with operating hours, phone, and quote triggers.
+- **Flagship Machine Showcase:** Features the **ProCut 4x8 Wood Router** (24,000 RPM / 6KW spindle, 49" x 97" vacuum envelope, NC Studio/Mach3/DSP/DDCS controller options, 1-year warranty).
+- **Live Supabase Backend:** Directly connected to PostgreSQL on Supabase (`inquiries` table with Row-Level Security) capturing form inquiries and quote requests in real time.
+- **Interactive RFQ & Lead Gen Form:** Material selector, table size options, timeline, and file format validation.
+- **Complete Business Identity:**
+  - **Location:** Udhana, Surat, Gujarat-395006, India.
+  - **Phone:** `+91 9712266167`
+  - **Hours:** Mon–Fri: 9:00 AM – 7:00 PM | Sunday: Production Closed
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend (Vite/React):** React 18, Vite 5, Tailwind CSS, Lucide React
+- **Frontend (Standalone):** Standalone `index.html` with Tailwind CSS CDN, FontAwesome, Google Fonts
+- **Backend / Database:** Supabase (PostgreSQL 15, REST API, Row Level Security)
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Development Server
-To start the live Vite development server with Hot Module Replacement (HMR):
+### 1. Standalone Single-Page (No build needed)
+Simply double-click or serve `index.html` directly in any web browser.
+
+### 2. React + Vite Development Server
 ```bash
+npm install
 npm run dev
 ```
-Open your browser at `http://localhost:3000` (or the port specified in terminal).
+Open `http://localhost:3000` in your browser.
 
-### 2. Production Build
-To create an optimized, minified production build:
+### 3. Production Build
 ```bash
 npm run build
 ```
-This generates the standalone production bundle inside the `dist/` directory.
-
-### 3. Preview Production Build
-To preview the generated production build locally:
-```bash
-npm run preview
-```
+Creates an optimized, minified production build in the `dist/` directory.
 
 ---
 
-## 🛠 Tech Stack & Architecture
+## 🗄 Supabase Backend Configuration
 
-- **React 18** – Modular, high-performance UI components
-- **Vite 5** – Sub-millisecond HMR and lightning-fast ES module bundling
-- **Tailwind CSS 3** – Industrial color system (slate/charcoal `#121417` and safety-orange `#F97316`)
-- **Lucide React** – Clean, modern engineering and mechanical icons
+- **Project Name:** CNC Router
+- **Project Ref:** `kbkurzriqgddnepmlnnt`
+- **Table:** `public.inquiries`
+  - Fields: `id`, `full_name`, `email`, `phone`, `company`, `machine_model`, `primary_material`, `bed_size`, `urgency`, `project_details`, `files_info`, `status`, `created_at`
+- **Security:** RLS enabled with anonymous insert policy for web inquiries.
 
 ---
 
@@ -41,24 +59,27 @@ npm run preview
 
 ```
 VECTOR ENGINEERING/
-├── index.html                   # HTML Entry point with Google Fonts
+├── index.html                   # High-converting standalone industrial page
 ├── vite.config.js               # Vite configuration (port 3000)
-├── tailwind.config.js           # Industrial color scheme & font definitions
-├── postcss.config.js            # PostCSS Autoprefixer configuration
-├── package.json                 # Project dependencies & scripts
+├── tailwind.config.js           # Industrial color scheme & fonts
+├── package.json                 # Dependencies & scripts
+├── public/                      # Static assets & images
+│   ├── logo.jpg                 # Vector Engineering official logo
+│   └── procut-router.jpg        # ProCut 4x8 CNC router machine image
 └── src/
-    ├── main.jsx                 # React root DOM mount
-    ├── App.jsx                  # Main application assembly
-    ├── index.css                # Tailwind directives & custom industrial patterns
+    ├── main.jsx                 # React DOM root
+    ├── App.jsx                  # Main application component
+    ├── supabaseClient.js        # Supabase client integration
+    ├── index.css                # Tailwind directives
     └── components/
-        ├── Navbar.jsx           # Sticky nav, utility status bar & mobile drawer
-        ├── Hero.jsx             # Value prop, live spindle graphic & trust bar
-        ├── Capabilities.jsx     # 5 core CNC services with technical specs
-        ├── MaterialsMatrix.jsx  # Categorized woods, plastics, metals & foams
-        ├── Equipment.jsx        # 5x10 & 4x8 router specs, vacuum, and metrology
-        ├── Portfolio.jsx        # Interactive filterable case studies
+        ├── Navbar.jsx           # Header, operating hours, phone & CTA
+        ├── Hero.jsx             # Flagship router showcase & trust badges
+        ├── Capabilities.jsx     # CNC machining services & technical specs
+        ├── MaterialsMatrix.jsx  # Woods, plastics, metals & composites
+        ├── Equipment.jsx        # Machine lineup & controller specs
+        ├── Portfolio.jsx        # Project gallery & case studies
         ├── Process.jsx          # 4-step CAD-to-crate workflow
-        ├── RfqSection.jsx       # Interactive RFQ form with drag-and-drop files
-        ├── Faq.jsx              # Interactive animated FAQ accordion
-        └── Footer.jsx           # Shop facility dock, hours, and legal notes
+        ├── RfqSection.jsx       # Supabase-connected quote inquiry form
+        ├── Faq.jsx              # Technical & commercial FAQ accordion
+        └── Footer.jsx           # Surat factory address, hours & credentials
 ```
